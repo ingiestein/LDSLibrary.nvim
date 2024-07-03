@@ -1,0 +1,57 @@
+
+# Ignore compiled Lua files
+*.luac
+
+# Ignore LuaRocks specific files
+*.rock
+*.rockspec
+
+# Ignore log files and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.swn
+*.un~
+*.~undo
+*.~backup
+*.~deleting
+
+# Ignore Node.js specific files if using node plugins or tools
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignore Python virtual environments if using Python
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignore macOS specific files
+.DS_Store
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore test coverage reports
+coverage/
+*.cover
+*.lcov
+
+# Ignore build output directories
+build/
+dist/
+
+# Ignore Neovim specific backup and swap files
+**/*~
+**/*.sw?
+**/*.un~
+**/*.bak
+**/.netrwhist
+tags
+sessions/
