@@ -8,9 +8,9 @@ This Neovim plug in is designed to make importation of scripture references from
 
 You can call a full chapter:
 
-'''
+```
 :MC 1 Nephi 1
-'''
+```
 
 You can call a singe verse:
 
