@@ -1,14 +1,13 @@
-local scriptquery = require("LDSLibrary.commands.scripturequery")
+local scriptquery = require("LDSLibrary.utils.scripturequery")
 
 local parser = require("LDSLibrary.utils.parser")
-
--- _G.debug = true
 
 local M = {}
 
 ---@param opts? table
 M.setup = function(opts)
-	opts = opts or { language = "eng" }
+	opts = opts or { language = "eng",
+					debub = false }
 
 	local function myfunc(args)
 		local input = args.args

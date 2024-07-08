@@ -1,8 +1,9 @@
 local fuzzy_matcher = require("LDSLibrary.utils.fuzzy_matcher")
+local gf = require("LDSLibrary.utils.global_functions")
 
 local M = {}
 
-local debug = true
+local debug = false
 
 local function rangeToList(rangeStr)
 	local startNum, endNum = rangeStr:match("(%d+)-(%d+)")
@@ -21,28 +22,12 @@ local function rangeToList(rangeStr)
 	return result
 end
 
-local function strip(inputstr)
-	return (inputstr:gsub("^%s*(.-)%s*$", "%1"))
-end
-
-local function split(inputstr, sep)
-	if sep == nil then
-		sep = "%s"
-	end
-	local t = {}
-	for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
-		str = strip(str)
-		table.insert(t, str)
-	end
-	return t
-end
-
 local function extract_book_names(input)
 	return input:match("([1-4]?%s?[A-za-z ]+)")
 end
 
 local function split_chapter_verse(input)
-	local splitinput = split(input, ":")
+	local splitinput = gf.split(input, ":")
 	if #splitinput == 0 then
 		print("no chapter/verse found")
 		return {
@@ -83,7 +68,7 @@ local function extract_verses(input, booktitle)
 	end
 
 	if verses then
-		local verse_groups = split(verses, ",")
+		local verse_groups = gf.split(verses, ",")
 		if debug then
 			print("extract_verses verse_groups: ", vim.inspect(verse_groups))
 		end
@@ -111,13 +96,13 @@ end
 function M.parse(input, opts)
 	local opts = opts
 	-- print(input)
-	local splitinput = split(input, ";")
+	local splitinput = gf.split(input, ";")
 
 	local querytable = {}
 	for _, ref in ipairs(splitinput) do
 		local booktitle = extract_book_names(ref)
 		local chapter_verses = extract_verses(ref, booktitle)
-		local fuzybooktitle = fuzzy_matcher.find_best_match(strip(booktitle))
+		local fuzybooktitle = fuzzy_matcher.find_best_match(gf.strip(booktitle))
 		local chapter = chapter_verses.chapter
 		local verses = chapter_verses.verses
 		if debug then
