@@ -39,7 +39,7 @@ end
 local function extract_paragraphs(html)
 	local paragraphs = {}
 	for p_tag in html:gmatch('<p class=\\"verse\\".-</p>') do
-		print("P_TAG: ",p_tag)
+		-- print("P_TAG: ",p_tag)
 		local verse_number = gf.strip(p_tag:match('<span class=\\"verse%-number\\">(.-)</span>') or "")
 		local verse_text = p_tag:gsub('<span class=\\"verse%-number\\">.-</span>', ""):match('">(.-)</p>') or ""
 		-- Remove additional HTML tags from verse text
@@ -96,7 +96,7 @@ function M.scripturequery(queries, opts)
 			short_book,
 			chapter
 		)
-		print(url)
+		-- print(url)
 		local result = curl.get(url)
 
 		-- Check if the request was successful
@@ -123,11 +123,11 @@ function M.scripturequery(queries, opts)
 			-- print(vim.inspect(paragraphs))
 			-- print("verses: ", vim.inspect(verses))
 			if is_table_empty(verses) then
-				print("Empty verses table. will get all of them.")
+				-- print("Empty verses table. will get all of them.")
 				verses_to_insert = all_verses
 			else
 				for _, verse in ipairs(verses) do
-					print(verse, paragraphs[verse])
+					-- print(verse, paragraphs[verse])
 					verses_to_insert[tonumber(verse)] = paragraphs[verse]
 				end
 			end
