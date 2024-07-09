@@ -3,6 +3,7 @@ local gf = require("LDSLibrary.utils.global_functions")
 local lib = require("LDSLibrary.tables.scripturetables")
 
 local curl = require("plenary.curl")
+
 table.unpack = table.unpack or unpack
 local M = {}
 
@@ -29,7 +30,6 @@ local function get_short_volume_name(book)
 	end
 end
 
-
 -- Function to remove HTML tags
 
 local function remove_html_tags(str)
@@ -39,6 +39,7 @@ end
 local function extract_paragraphs(html)
 	local paragraphs = {}
 	for p_tag in html:gmatch('<p class=\\"verse\\".-</p>') do
+		print("P_TAG: ",p_tag)
 		local verse_number = gf.strip(p_tag:match('<span class=\\"verse%-number\\">(.-)</span>') or "")
 		local verse_text = p_tag:gsub('<span class=\\"verse%-number\\">.-</span>', ""):match('">(.-)</p>') or ""
 		-- Remove additional HTML tags from verse text
@@ -48,12 +49,16 @@ local function extract_paragraphs(html)
 	return paragraphs
 end
 
+local function insert_text(text)
+	local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+	vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, text)
+end
+
 local function insert_verses(versestable, reference)
 	local keys = {}
 	for key in pairs(versestable) do
 		table.insert(keys, key)
 	end
-
 	-- Step 2: Sort the list of keys
 	table.sort(keys)
 	local text = {}
@@ -62,9 +67,12 @@ local function insert_verses(versestable, reference)
 		-- print("Key:", key, "Value:", versestable[key])
 		table.insert(text, tostring(key) .. ". " .. versestable[key])
 	end
-	local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
-	vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, text)
+	insert_text({reference.in_language_title})
+	insert_text(text)
+	
 end
+
+
 
 local function is_table_empty(t)
 	for _ in pairs(t) do
@@ -96,6 +104,15 @@ function M.scripturequery(queries, opts)
 			print("Failed to fetch data from the URL. Status code:", result.status)
 		else
 			local body = result.body
+			local jsondata  = vim.fn.json_decode(body)
+			local in_language_title = jsondata.meta.title
+			reference.in_language_title = in_language_title
+			-- print(vim.inspect(in_language_title))
+			-- print("json body: ",jsondata.content.body)
+			-- print("json body type: ",type(jsondata.content.body))
+			-- print("body orig type: ", type(body))
+			-- For some reason trying to get 'jsondata.content.body' errors out and crashes the program.
+			-- but just the raw text data isn't an issue. 
 			local paragraphs = extract_paragraphs(body)
 			local verses_to_insert = {}
 			local all_verses = {}
@@ -104,7 +121,6 @@ function M.scripturequery(queries, opts)
 				all_verses[tonumber(num)] = verse
 			end
 			-- print(vim.inspect(paragraphs))
-
 			-- print("verses: ", vim.inspect(verses))
 			if is_table_empty(verses) then
 				print("Empty verses table. will get all of them.")

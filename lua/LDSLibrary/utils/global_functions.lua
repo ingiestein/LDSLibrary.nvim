@@ -10,7 +10,7 @@ function M.split(inputstr, sep)
 	end
 	local t = {}
 	for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
-		str = strip(str)
+		str = M.strip(str)
 		table.insert(t, str)
 	end
 	return t

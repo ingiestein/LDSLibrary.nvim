@@ -58,7 +58,7 @@ end
 local function extract_verses(input, booktitle)
 	local numbers = {}
 	local seen = {}
-	local versestring = strip(input:gsub(booktitle, ""))
+	local versestring = gf.strip(input:gsub(booktitle, ""))
 	local result = split_chapter_verse(versestring)
 	local chapter = result.chapter
 	local verses = result.verses
@@ -114,6 +114,7 @@ function M.parse(input, opts)
 		end
 		local referencedata = {
 			book = fuzybooktitle,
+			in_language_title = nil,
 			chapter = chapter,
 			verses = verses,
 		}
