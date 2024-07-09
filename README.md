@@ -41,7 +41,7 @@ Using [Lazy](https://github.com/folke/lazy.nvim):
 
 ```
 {
-    'ingiestein/LDSLibrary.vim',
+    'ingiestein/LDSLibrary.nvim',
     opts = { language = 'eng' },
     dependencies = {
         'nvim-lua/plenary.nvim',
