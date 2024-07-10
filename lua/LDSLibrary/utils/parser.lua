@@ -117,6 +117,7 @@ function M.parse(input, opts)
 			in_language_title = nil,
 			chapter = chapter,
 			verses = verses,
+			cannonical_url = nil,
 		}
 		table.insert(querytable, referencedata)
 	end
