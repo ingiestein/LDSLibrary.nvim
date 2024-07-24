@@ -109,13 +109,6 @@ end
   
     return table.concat(result, ", ")
   end
-    --
-        -- local referencedata = {
-            -- book = fuzybooktitle,
-            -- in_language_title = nil,
-            -- chapter = chapter,
-            -- verses = verses,
-        -- }
-    --
+
 return M
   
