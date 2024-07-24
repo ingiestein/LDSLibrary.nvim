@@ -53,22 +53,19 @@ local function insert_text(text)
 	-- local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
 	-- vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, text)
 	local bufnr = vim.api.nvim_get_current_buf()
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local row = cursor[1] - 1  -- Convert to 0-indexed
-  local col = cursor[2]
+	local cursor = vim.api.nvim_win_get_cursor(0)
+	local row = cursor[1] - 1 -- Convert to 0-indexed
+	local col = cursor[2]
 
-  -- Insert the text at the current cursor location
-  vim.api.nvim_buf_set_text(bufnr, row, col, row, col, text)
+	-- Insert the text at the current cursor location
+	vim.api.nvim_buf_set_text(bufnr, row, col, row, col, text)
 end
 
 local function insert_reference(verses_to_insert, reference)
-	local obsidian_reference =  markdown.format_obsidian_reference(reference,verses_to_insert)
+	local obsidian_reference = markdown.format_obsidian_reference(reference, verses_to_insert)
 	insert_text(obsidian_reference)
 	-- insert_text(obsidian_reference.md_verses)
-	
 end
-
-
 
 local function is_table_empty(t)
 	for _ in pairs(t) do
@@ -85,7 +82,7 @@ function M.scripturequery(queries, opts)
 		local verses = reference.verses
 		local short_volume = get_short_volume_name(book)
 		local short_book = lib.short_books[book]
-	
+
 		local url = string.format(
 			"https://www.churchofjesuschrist.org/study/api/v3/language-pages/type/content?lang=%s&uri=/scriptures/%s/%s/%s",
 			language,
@@ -101,21 +98,18 @@ function M.scripturequery(queries, opts)
 			print("Failed to fetch data from the URL. Status code:", result.status)
 		else
 			local body = result.body
-			local jsondata  = vim.fn.json_decode(body)
+			local jsondata = vim.fn.json_decode(body)
 			local in_language_title = jsondata.meta.title
 			reference.in_language_title = in_language_title
 			local urlbit = jsondata.meta.canonicalUrl
-			reference.cannonical_url = string.format(
-				"https://www.churchofjesuschrist.org/study/%s",
-				urlbit
-			)
+			reference.cannonical_url = string.format("https://www.churchofjesuschrist.org/study/%s", urlbit)
 			-- print(vim.inspect(reference))
 			-- print(vim.inspect(in_language_title))
 			-- print("json body: ",jsondata.content.body)
 			-- print("json body type: ",type(jsondata.content.body))
 			-- print("body orig type: ", type(body))
 			-- For some reason trying to get 'jsondata.content.body' errors out and crashes the program.
-			-- but just the raw text data isn't an issue. 
+			-- but just the raw text data isn't an issue.
 			local paragraphs = extract_paragraphs(body)
 			local verses_to_insert = {}
 			local all_verses = {}
