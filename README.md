@@ -2,7 +2,7 @@
 
 ## Introductions
 
-This Neovim plug in is designed to make importation of scripture references from the Church of Jesus Christ of Latter Day Saints' cannon easier.
+This Neovim plug in is designed to make importation of scripture references from the Church of Jesus Christ of Latter Day Saints' cannon easier. It was written to be used in conjuction with the program [Obsidian](https://obsidian.md) and with the corresponding NeoVim plug-in [obsidian.nvim](<https://github.com/epwalsh/obsidian.nvim>]. Otherwise the formatting won't make any sense.
 
 ## Usage
 
