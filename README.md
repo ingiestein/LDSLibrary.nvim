@@ -24,7 +24,7 @@ You can call a more complicated selection:
 :MC 1 Nephi 1:5-6, 7, 9-10
 ```
 
-You can even call multiple chapters or books at once with a ';' separating the references:
+You can even call multiple chapters from the same or different books at once with a ';' separating the references:
 
 ```
 :MC 1 Nephi 1:5-6, 7, 9-10 ; 2 Nephi 5:5-6, 8, 11-14
@@ -67,7 +67,7 @@ end)
 
 ## Options
 
-You can pass a language code as an option. The following codes are availabe at churchofjesuschrist.org:
+You can pass a language code as an option. The following codes are available at [www.churchofjesuschrist.org](www.churchofjesuschrist.org):
 
     orm: Afaan Oromoo
     afr: Afrikaans
