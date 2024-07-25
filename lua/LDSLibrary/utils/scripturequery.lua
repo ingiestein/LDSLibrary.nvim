@@ -102,7 +102,7 @@ function M.scripturequery(queries, opts)
 			local in_language_title = jsondata.meta.title
 			reference.in_language_title = in_language_title
 			local urlbit = jsondata.meta.canonicalUrl
-			reference.cannonical_url = string.format("https://www.churchofjesuschrist.org/study/%s", urlbit)
+			reference.cannonical_url = string.format("https://www.churchofjesuschrist.org/study%s", urlbit)
 			-- print(vim.inspect(reference))
 			-- print(vim.inspect(in_language_title))
 			-- print("json body: ",jsondata.content.body)

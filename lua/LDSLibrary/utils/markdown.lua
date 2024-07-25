@@ -46,10 +46,7 @@ end
 
 function M.make_link_line(reference_object)
 	-- > [churchofjesuschrist.org](https://www.churchofjesuschrist.org/study/scriptures/bofm/alma/32?lang=eng&id=p17-p18#p17)
-	return string.format(
-		"> [churchofjesuschrist.org](https://www.churchofjesuschrist.org/study%s)",
-		reference_object.cannonical_url
-	)
+	return string.format("> [churchofjesuschrist.org](%s)", reference_object.cannonical_url)
 end
 
 function M.format_title_line(referenceobject, verses_to_insert)
@@ -121,4 +118,3 @@ function M.format_number_list(numbers)
 end
 
 return M
-
