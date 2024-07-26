@@ -8,7 +8,7 @@ local M = {}
 M.setup = function(opts)
 	opts = opts or { language = "eng", debub = false }
 
-	local function SCRIPTurequery(args)
+	local function scripturequery(args)
 		local input = args.args
 		local queries = parser.parse(input, opts)
 		SCRIPTquery.scripturequery(queries, opts)
