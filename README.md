@@ -2,32 +2,32 @@
 
 ## Introductions
 
-This Neovim plug in is designed to make importation of scripture references from the Church of Jesus Christ of Latter Day Saints' cannon easier. It was written to be used in conjuction with the program [Obsidian](https://obsidian.md) and with the corresponding NeoVim plug-in [obsidian.nvim](<https://github.com/epwalsh/obsidian.nvim>]. Otherwise the formatting won't make any sense.
+This NeoVim plug in is designed to make importation of scripture references from the Church of Jesus Christ of Latter Day Saints' cannon easier. It was written to be used in conjunction with the program [Obsidian](https://obsidian.md) and with the corresponding NeoVim plug-in [obsidian.nvim](<https://github.com/epwalsh/obsidian.nvim>]. Otherwise the formatting won't make any sense.
 
 ## Usage
 
 You can call a full chapter:
 
 ```
-:MC 1 Nephi 1
+:SCRIPT 1 Nephi 1
 ```
 
 You can call a singe verse:
 
 ```
-:MC 1 Nephi 1:1
+:SCRIPT 1 Nephi 1:1
 ```
 
 You can call a more complicated selection:
 
 ```
-:MC 1 Nephi 1:5-6, 7, 9-10
+:SCRIPT 1 Nephi 1:5-6, 7, 9-10
 ```
 
 You can even call multiple chapters from the same or different books at once with a ';' separating the references:
 
 ```
-:MC 1 Nephi 1:5-6, 7, 9-10 ; 2 Nephi 5:5-6, 8, 11-14
+:SCRIPT 1 Nephi 1:5-6, 7, 9-10 ; 2 Nephi 5:5-6, 8, 11-14
 ```
 
 ## Requirements

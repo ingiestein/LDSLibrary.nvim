@@ -1,4 +1,4 @@
-local scriptquery = require("LDSLibrary.utils.scripturequery")
+local SCRIPTquery = require("LDSLibrary.utils.scripturequery")
 
 local parser = require("LDSLibrary.utils.parser")
 
@@ -8,10 +8,10 @@ local M = {}
 M.setup = function(opts)
 	opts = opts or { language = "eng", debub = false }
 
-	local function scripturequery(args)
+	local function SCRIPTurequery(args)
 		local input = args.args
 		local queries = parser.parse(input, opts)
-		scriptquery.scripturequery(queries, opts)
+		SCRIPTquery.scripturequery(queries, opts)
 	end
 	local function confquery(args)
 		local inputs = args.args
@@ -19,8 +19,8 @@ M.setup = function(opts)
 		-- confquery.confquery(queries,opts)
 	end
 	local function load()
-		vim.api.nvim_create_user_command("script", scripturequery, { nargs = 1 })
-		vim.api.nvim_create_user_command("conf", confquery, { nargs = 1 })
+		vim.api.nvim_create_user_command("SCRIPT", scripturequery, { nargs = 1 })
+		vim.api.nvim_create_user_command("CONF", confquery, { nargs = 1 })
 	end
 	load()
 end
