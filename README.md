@@ -9,25 +9,25 @@ This NeoVim plug in is designed to make importation of scripture references from
 You can call a full chapter:
 
 ```
-:SCRIPT 1 Nephi 1
+:Script 1 Nephi 1
 ```
 
 You can call a singe verse:
 
 ```
-:SCRIPT 1 Nephi 1:1
+:Script 1 Nephi 1:1
 ```
 
 You can call a more complicated selection:
 
 ```
-:SCRIPT 1 Nephi 1:5-6, 7, 9-10
+:Script 1 Nephi 1:5-6, 7, 9-10
 ```
 
 You can even call multiple chapters from the same or different books at once with a ';' separating the references:
 
 ```
-:SCRIPT 1 Nephi 1:5-6, 7, 9-10 ; 2 Nephi 5:5-6, 8, 11-14
+:Script 1 Nephi 1:5-6, 7, 9-10 ; 2 Nephi 5:5-6, 8, 11-14
 ```
 
 ## Requirements
