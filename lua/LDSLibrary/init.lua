@@ -19,8 +19,8 @@ M.setup = function(opts)
 		-- confquery.confquery(queries,opts)
 	end
 	local function load()
-		vim.api.nvim_create_user_command("SCRIPT", scripturequery, { nargs = 1 })
-		vim.api.nvim_create_user_command("CONF", confquery, { nargs = 1 })
+		vim.api.nvim_create_user_command("Script", scripturequery, { nargs = 1 })
+		vim.api.nvim_create_user_command("Conf", confquery, { nargs = 1 })
 	end
 	load()
 end
